@@ -1,0 +1,47 @@
+DrivingTestConfiguration:
+  # coordinate origin: where the cars collide
+  # TTC: time **for the colliding cars** to collide (seconds)
+  # TTA: time **for the noncollding car** to arrive at the origin (seconds)
+  # collidingAngle: angle between the colliding car velocity and the testee velocity (degrees)
+  # noncollidingAngle: angle between the noncolliding car velocity and the testee velocity (degrees)
+  # position: coordinates relative to the origin (meters), e.g. [-10, 5]
+  # Speed unit is km/h
+  TTCAtStart: 5 
+  TTCAtPause: 0.5
+  tests: # 4 tests: ORTHOGONAL, OBTUSE, ACUTE, CURVE
+    # All car tracks in ORTHOGONAL, OBTUSE and ACUTE are straight lines
+    # Testee initial velocity direction is [0, 1], i.e. Oy axis
+    orthogonal:
+      testeeSpeed: 40
+      collidingCarSpeed: 20
+      noncollidingCarSpeed: 10
+      TTA: 8
+    obtuse:
+      testeeSpeed: 40
+      collidingCarSpeed: 20
+      noncollidingCarSpeed: 10
+      TTA: 8
+      collidingAngle: 45
+      noncollidingAngle: 45
+    acute:
+      testeeSpeed: 40
+      collidingCarSpeed: 20
+      noncollidingCarSpeed: 10
+      TTA: 8
+      collidingAngle: 45
+      noncollidingAngle: 45
+    curve:
+      testeeSpeed: 40
+      noncollidingCarPosition: [-1, -0.2] # x < 0 means the noncolliding car is on the left
+      arcTrack: 
+        # Length is determined by TTC and testee's Speed
+        collisionVelocityAngle: 10 # Angle between the collision velocity and the Oy axis (direction [0, 1]) (degrees),
+                                   # positive if counterclockwise, 
+                                   # equal to the angle of the arc track
+                                   # irrelavant to collisionAngle
+        direction: counterclockwise
+
+# 全局参数：测试开始时的TTC、暂停时的TTC
+# 测试1的参数：三辆车各自的速度、不会碰撞的车到达碰撞位置所需时间
+# 测试2、3的参数：三辆车各自的速度、不会碰撞的车到达碰撞位置所需时间、车速夹角
+# 测试4的参数：testee车速、不会碰撞的车位置（相对于碰撞的车）、碰撞速度与y正半轴的夹角（即弧轨迹圆心角）、弧轨迹方向（顺时针或逆时针）
